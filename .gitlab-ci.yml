@@ -1,0 +1,17 @@
+image: ubuntu-latest
+
+pages:
+  stage: deploy
+  script:
+    # 1. Creamos la carpeta 'public' que requiere GitLab Pages
+    - mkdir -p public
+    
+    # 2. Copiamos todo el contenido actual a la carpeta 'public'
+    #    (Excepto la carpeta public en sí misma para evitar bucles)
+    - rsync -av --exclude='public' --exclude='.git*' --exclude='.gitlab-ci.yml' --exclude='LICENSE' --exclude='*.md' ./ public/
+    
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
