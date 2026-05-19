@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 1: Control Total y Auditoría</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">⚡ FSO + IA</a>
+    <div class="nav-links">
+      <a href="index.html">Inicio</a>
+      <a href="modulo1.html" class="active">Módulo 1</a>
+      <a href="modulo2.html">Módulo 2</a>
+      <a href="modulo3.html">Módulo 3</a>
+      <a href="modulo4.html">Módulo 4</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <div class="module-header mh-m1">
+    <div class="module-num">Módulo 1 · Semanas 1–2</div>
+    <h1>🔍 Control Total y Auditoría</h1>
+    <p>Levantá el proyecto, entendé la base de código existente y establecé el entorno de control. La IA actúa como lupa arquitectónica para mapear sistemas complejos en minutos.</p>
+  </div>
+
+  <!-- CLASE 1 -->
+  <div class="clase open">
+    <div class="clase-header" onclick="toggleClase(this)">
+      <div class="clase-num m1">1</div>
+      <h2>Ingesta y Relevamiento de Proyectos Complejos</h2>
+      <span class="time-badge">1h 30min</span>
+      <span class="clase-toggle">▼</span>
+    </div>
+    <div class="clase-body">
+
+      <div class="block">
+        <div class="block-title">🎯 Objetivo</div>
+        <p>Convertir un repositorio desconocido en un mapa mental y técnico claro en 90 minutos.</p>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 1 · Cambio de paradigma (10 min)</div>
+        <ul>
+          <li><strong>Antes:</strong> leer código manualmente, archivo por archivo</li>
+          <li><strong>Ahora:</strong> hacer que la IA lea el sistema completo</li>
+          <li>Concepto clave: "No entendés archivo por archivo → entendés el sistema completo"</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 2 · Setup interactivo (15 min)</div>
+        <ul>
+          <li>Cursor IDE con integración de IA</li>
+          <li>Gemini 1.5 Pro (ventana de contexto extendida)</li>
+          <li><strong>Alternativa mobile:</strong> subir repo a GitHub + usar interfaz web + prompts</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 3 · Exploración total (25 min)</div>
+        <p style="margin-bottom:0.75rem">Los estudiantes ejecutan estos prompts sobre su repositorio:</p>
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt 1 — Análisis general</div>
+          <pre>Analiza este proyecto completo.
+
+Quiero:
+1. Qué hace el sistema
+2. Módulos principales
+3. Flujo de datos
+4. Riesgos técnicos</pre>
+        </div>
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt 2 — Profundización</div>
+          <pre>Identifica:
+- Código duplicado
+- Acoplamiento fuerte
+- Posibles bugs
+- Riesgos de seguridad</pre>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 4 · Workshop (30 min)</div>
+        <ul>
+          <li><strong>Input:</strong> Repo real o ejemplo (Java / Python / Node)</li>
+          <li>Generar diagrama de arquitectura</li>
+          <li>Mapear flujo de datos</li>
+          <li>Identificar deuda técnica y vulnerabilidades</li>
+        </ul>
+        <div style="margin-top:0.75rem">
+          <div class="block-title">Output esperado</div>
+          <div class="priority">
+            <div class="p-item"><span class="dot dot-red"></span>Crítico: vulnerabilidades de seguridad activas</div>
+            <div class="p-item"><span class="dot dot-yellow"></span>Medio: deuda técnica y code smells</div>
+            <div class="p-item"><span class="dot dot-green"></span>Bajo: mejoras de legibilidad y estructura</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 5 · Cierre y reflexión (10 min)</div>
+        <ul>
+          <li>¿Qué entendiste que antes te llevaba días?</li>
+          <li>¿Qué NO entendió bien la IA? (limitaciones honestas)</li>
+        </ul>
+      </div>
+
+      <div class="deliverables">
+        <div class="block-title">📄 Entregable</div>
+        <ul>
+          <li>Documento de arquitectura del sistema</li>
+          <li>Diagrama de flujo de datos</li>
+          <li>Lista priorizada de riesgos</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CLASE 2 -->
+  <div class="clase">
+    <div class="clase-header" onclick="toggleClase(this)">
+      <div class="clase-num m1">2</div>
+      <h2>Estrategias de Documentación Dinámica</h2>
+      <span class="time-badge">1h 30min</span>
+      <span class="clase-toggle">▼</span>
+    </div>
+    <div class="clase-body">
+
+      <div class="block">
+        <div class="block-title">🎯 Objetivo</div>
+        <p>Crear documentación que no quede obsoleta, se genere automáticamente y sea útil tanto para humanos como para la IA.</p>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 1 · Concepto clave (15 min)</div>
+        <p style="margin-bottom:0.75rem">"La documentación ya no se escribe → se genera y se mantiene sola"</p>
+        <ul>
+          <li><strong>Documentación técnica:</strong> arquitectura, APIs, modelos de datos</li>
+          <li><strong>Documentación funcional:</strong> flujos de negocio, casos de uso</li>
+          <li><strong>Documentación operativa:</strong> runbooks, procedimientos de incidentes</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 2 · Setup (15 min)</div>
+        <ul>
+          <li>Cursor con archivos de contexto</li>
+          <li>Markdown / Wiki integrado al repositorio</li>
+          <li>Archivos <code>context.md</code> como memoria del proyecto</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 3 · "Enseñarle a la IA" (25 min)</div>
+        <p style="margin-bottom:0.75rem">Crear el archivo <code>/docs/context.md</code> con las reglas de negocio:</p>
+        <div class="prompt-box">
+          <div class="prompt-label">Plantilla — context.md</div>
+          <pre>Este sistema:
+- Gestiona usuarios y autenticación
+- Usa PostgreSQL como base de datos principal
+- Expone una API REST (versión 2)
+
+Reglas de negocio:
+- No borrar datos críticos, solo soft-delete
+- Validar todos los inputs antes de persistir
+- Los emails son únicos por tenant</pre>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 4 · Workshop (30 min)</div>
+        <div class="prompt-box">
+          <div class="prompt-label">Paso 1 — Generación inicial</div>
+          <pre>Genera documentación completa del sistema:
+- Arquitectura general
+- Endpoints disponibles
+- Modelo de datos y relaciones</pre>
+        </div>
+        <div class="prompt-box">
+          <div class="prompt-label">Paso 2 — Auto-actualización</div>
+          <pre>Cada vez que cambie este módulo,
+actualiza la documentación en /docs
+manteniendo el mismo formato.</pre>
+        </div>
+        <div style="margin-top:0.75rem">
+          <div class="block-title">Paso 3 — Versionado</div>
+          <ul>
+            <li>Guardar docs en <code>/docs/</code></li>
+            <li>Integrar con Git (commits automáticos de docs)</li>
+            <li>Desde mobile: editar Markdown directamente en GitHub</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">✅ Checklist de evaluación (5 min)</div>
+        <ul>
+          <li>¿Se entiende el sistema sin leer código?</li>
+          <li>¿La IA puede usar esa documentación como contexto?</li>
+        </ul>
+      </div>
+
+      <div class="deliverables">
+        <div class="block-title">📄 Entregables</div>
+        <ul>
+          <li>Wiki técnica completa en <code>/docs/</code></li>
+          <li>Archivo de contexto reutilizable <code>context.md</code></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CLASE 3 -->
+  <div class="clase">
+    <div class="clase-header" onclick="toggleClase(this)">
+      <div class="clase-num m1">3</div>
+      <h2>Gestión y Seguridad de la Base de Datos</h2>
+      <span class="time-badge">1h 30min</span>
+      <span class="clase-toggle">▼</span>
+    </div>
+    <div class="clase-body">
+
+      <div class="block">
+        <div class="block-title">🎯 Objetivo</div>
+        <p>Entender y asegurar la base de datos usando IA como auditor especializado de esquemas y consultas.</p>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 1 · Introducción (15 min)</div>
+        <p style="margin-bottom:0.5rem">Problemas típicos en bases de datos heredadas:</p>
+        <ul>
+          <li>Queries lentas sin índices adecuados</li>
+          <li>SQL injection por concatenación directa</li>
+          <li>Backups inexistentes o no testeados</li>
+          <li>Datos sensibles expuestos sin encriptación</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 2 · "Leer la DB como un mapa" (20 min)</div>
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — Análisis de esquema</div>
+          <pre>Analiza este esquema de base de datos.
+
+Quiero:
+- Relaciones entre tablas
+- Tablas y columnas críticas
+- Problemas de diseño
+- Índices faltantes
+- Datos sensibles sin proteger</pre>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 3 · Optimización con IA (20 min)</div>
+        <p style="margin-bottom:0.75rem">Ejemplo de query problemática:</p>
+        <div class="prompt-box">
+          <div class="prompt-label">Antes — vulnerable</div>
+          <pre>SELECT * FROM users WHERE email = 'test'</pre>
+        </div>
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — optimización</div>
+          <pre>Optimiza esta query para performance y seguridad.
+Explica cada mejora y por qué es importante.</pre>
+        </div>
+        <div class="prompt-box">
+          <div class="prompt-label">Después — seguro y eficiente</div>
+          <pre>cursor.execute(
+    "SELECT id, name, email FROM users WHERE email = %s",
+    (email,)
+)</pre>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 4 · Workshop completo (30 min)</div>
+        <ul>
+          <li><strong>Parte 1 — Auditoría:</strong> detectar SQL injection, falta de índices, datos sensibles expuestos</li>
+          <li><strong>Parte 2 — Seguridad:</strong> encontrar vulnerabilidades en capa de acceso a datos</li>
+          <li><strong>Parte 3 — Backup:</strong> diseñar estrategia de backups diarios con versionado y recuperación</li>
+        </ul>
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — Auditoría completa</div>
+          <pre>Encuentra vulnerabilidades en la capa de acceso a datos:
+1. Inyecciones SQL posibles
+2. Falta de validación de inputs
+3. Permisos excesivos
+4. Datos sin encriptar</pre>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">✅ Buenas prácticas (5 min)</div>
+        <ul>
+          <li>ORM con consultas parametrizadas (nunca concatenar)</li>
+          <li>Variables parametrizadas en queries directas</li>
+          <li>Logs de acceso a tablas sensibles</li>
+          <li>Principio de mínimo privilegio en usuarios de DB</li>
+        </ul>
+      </div>
+
+      <div class="deliverables">
+        <div class="block-title">📄 Entregables</div>
+        <ul>
+          <li>Informe de seguridad de la base de datos</li>
+          <li>Queries optimizadas y parametrizadas</li>
+          <li>Estrategia documentada de backup automatizado</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RESULTADO DEL MÓDULO -->
+  <div class="result-box">
+    <h3>🧠 Resultado del Módulo 1</h3>
+    <ul>
+      <li>Leer cualquier base de código en minutos usando IA</li>
+      <li>Documentar sistemas automáticamente con contexto reutilizable</li>
+      <li>Auditar la seguridad básica de cualquier codebase</li>
+      <li>Entender bases de datos complejas y sus riesgos</li>
+      <li>Tener control real del sistema desde el primer día</li>
+    </ul>
+  </div>
+
+  <div class="module-nav">
+    <a href="index.html" class="btn btn-outline">← Inicio</a>
+    <a href="modulo2.html" class="btn btn-primary">Módulo 2: Migración →</a>
+  </div>
+
+</main>
+
+<footer>
+  <p>Full-Stack Ownership con IA y Automatización &mdash; <a href="index.html">Inicio</a></p>
+</footer>
+
+<script>
+function toggleClase(header) {
+  const clase = header.parentElement;
+  clase.classList.toggle('open');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 3: Automatización con n8n y Docker</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">⚡ FSO + IA</a>
+    <div class="nav-links">
+      <a href="index.html">Inicio</a>
+      <a href="modulo1.html">Módulo 1</a>
+      <a href="modulo2.html">Módulo 2</a>
+      <a href="modulo3.html" class="active">Módulo 3</a>
+      <a href="modulo4.html">Módulo 4</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <div class="module-header mh-m3">
+    <div class="module-num">Módulo 3 · Semanas 5–6</div>
+    <h1>🐳 Automatización de Operaciones con n8n y Docker</h1>
+    <p>Eliminá tareas manuales repetitivas de mantenimiento y despliegue. Todo mediante Docker, Docker Compose, n8n y agentes de IA conectados a repositorios.</p>
+  </div>
+
+  <!-- CLASE 7 -->
+  <div class="clase open">
+    <div class="clase-header" onclick="toggleClase(this)">
+      <div class="clase-num m3">7</div>
+      <h2>Dockerización Profesional del Entorno</h2>
+      <span class="time-badge">1h 30min</span>
+      <span class="clase-toggle">▼</span>
+    </div>
+    <div class="clase-body">
+
+      <div class="block">
+        <div class="block-title">🎯 Objetivo</div>
+        <p>Crear imágenes Docker optimizadas para producción usando multi-stage builds, y orquestar servicios completos con Docker Compose.</p>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 1 · Por qué Docker en producción (15 min)</div>
+        <ul>
+          <li>El problema del "en mi máquina funciona"</li>
+          <li>Reproducibilidad de entornos de forma garantizada</li>
+          <li>Aislamiento y seguridad entre servicios</li>
+          <li>Escalabilidad horizontal simplificada</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 2 · Multi-stage Dockerfile (25 min)</div>
+        <p style="margin-bottom:0.75rem">Principios de un Dockerfile profesional:</p>
+        <div class="prompt-box">
+          <div class="prompt-label">Ejemplo — Dockerfile multi-stage (Python)</div>
+          <pre># Stage 1: Builder
+FROM python:3.12-slim AS builder
+WORKDIR /app
+COPY pyproject.toml .
+RUN pip install --no-cache-dir build && \
+    pip install --no-cache-dir .
+
+# Stage 2: Production
+FROM python:3.12-slim
+WORKDIR /app
+COPY --from=builder /usr/local/lib /usr/local/lib
+COPY src/ ./src/
+
+# Seguridad: usuario no-root
+RUN adduser --disabled-password appuser
+USER appuser
+
+EXPOSE 8000
+CMD ["python", "-m", "uvicorn", "src.main:app"]</pre>
+        </div>
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — Optimización con IA</div>
+          <pre>Revisá este Dockerfile y optimizalo para producción:
+- Reducir tamaño de imagen al mínimo
+- Eliminar capas innecesarias
+- Aplicar mejores prácticas de seguridad
+- Agregar health check adecuado
+- Documentar cada decisión</pre>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 3 · Docker Compose: orquestación completa (35 min)</div>
+        <div class="prompt-box">
+          <div class="prompt-label">Ejemplo — docker-compose.yml (App + DB + n8n)</div>
+          <pre>version: '3.9'
+
+services:
+  app:
+    build: .
+    ports: ["8000:8000"]
+    environment:
+      DATABASE_URL: postgresql://user:pass@db:5432/myapp
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: myapp
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "user"]
+      interval: 10s
+      retries: 5
+
+  n8n:
+    image: n8nio/n8n
+    ports: ["5678:5678"]
+    volumes:
+      - n8ndata:/home/node/.n8n
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  n8ndata:</pre>
+        </div>
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — Revisión de seguridad del Compose</div>
+          <pre>Revisá este docker-compose.yml y sugerí mejoras de seguridad:
+- Secrets management (sin passwords hardcodeadas)
+- Redes aisladas entre servicios
+- Límites de recursos (CPU/memoria)
+- Volúmenes con permisos correctos</pre>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">✅ Checklist de producción (5 min)</div>
+        <ul>
+          <li>¿La imagen no corre como root?</li>
+          <li>¿Los secrets están en variables de entorno, no hardcodeados?</li>
+          <li>¿Hay health checks definidos?</li>
+          <li>¿El tamaño de imagen es razonable (&lt; 200MB)?</li>
+        </ul>
+      </div>
+
+      <div class="deliverables">
+        <div class="block-title">📄 Entregables</div>
+        <ul>
+          <li><code>Dockerfile</code> multi-stage optimizado</li>
+          <li><code>docker-compose.yml</code> con todos los servicios</li>
+          <li><code>docker-compose.override.yml</code> para desarrollo local</li>
+          <li><code>.env.example</code> documentado</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CLASE 8 -->
+  <div class="clase">
+    <div class="clase-header" onclick="toggleClase(this)">
+      <div class="clase-num m3">8</div>
+      <h2>Orquestación de Flujos de Mantenimiento en n8n</h2>
+      <span class="time-badge">1h 30min</span>
+      <span class="clase-toggle">▼</span>
+    </div>
+    <div class="clase-body">
+
+      <div class="block">
+        <div class="block-title">🎯 Objetivo</div>
+        <p>Configurar n8n para automatizar tareas de monitoreo, backups y alertas sin escribir scripts manualmente.</p>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 1 · ¿Qué es n8n y por qué usarlo? (15 min)</div>
+        <ul>
+          <li>Automatización visual de flujos de trabajo (workflows)</li>
+          <li>Open-source, self-hosted, sin vendor lock-in</li>
+          <li>Más de 400 integraciones nativas</li>
+          <li>Corre perfectamente dentro de Docker Compose</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 2 · Setup e instalación (15 min)</div>
+        <ul>
+          <li><strong>Con Docker (recomendado):</strong> imagen oficial <code>n8nio/n8n</code></li>
+          <li><strong>Sin Docker:</strong> <code>npm install -g n8n &amp;&amp; n8n start</code></li>
+          <li>Acceso en <code>http://localhost:5678</code></li>
+          <li>Configuración de credenciales y variables de entorno</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 3 · Flujo: monitoreo de salud de DB (30 min)</div>
+        <p style="margin-bottom:0.75rem">Diseñar en n8n un workflow que:</p>
+        <ul>
+          <li>Se ejecute cada 5 minutos (trigger de cron)</li>
+          <li>Conecte a la base de datos y ejecute <code>SELECT 1</code></li>
+          <li>Si falla → envíe alerta por email / Slack / Telegram</li>
+          <li>Si el tiempo de respuesta supera 500ms → ejecute scripts de diagnóstico</li>
+          <li>Registre cada check en un log centralizado</li>
+        </ul>
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — Diseño del flujo con IA</div>
+          <pre>Diseñá un workflow de n8n para monitorear la salud de una base de datos PostgreSQL.
+
+El flujo debe:
+- Correr cada 5 minutos
+- Verificar conectividad y tiempo de respuesta
+- Enviar alerta a Slack si falla
+- Ejecutar un script de limpieza si el storage supera el 80%
+- Loguear todos los eventos en una tabla de auditoría</pre>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 4 · Flujo: backup automatizado (25 min)</div>
+        <ul>
+          <li>Trigger diario a las 03:00 AM</li>
+          <li>Ejecutar <code>pg_dump</code> via nodo Execute Command</li>
+          <li>Comprimir y nombrar con timestamp</li>
+          <li>Subir a S3 / Google Drive / almacenamiento local</li>
+          <li>Notificar resultado (éxito / fallo + tamaño del backup)</li>
+        </ul>
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — Flujo de backup</div>
+          <pre>Creá un workflow n8n que:
+- Ejecute pg_dump cada día a las 3 AM
+- Comprima el archivo resultante
+- Lo suba a Google Drive con nombre: backup_YYYY-MM-DD.sql.gz
+- Elimine backups con más de 30 días
+- Envíe resumen por email</pre>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">✅ Evaluación del módulo (5 min)</div>
+        <ul>
+          <li>¿El flujo de monitoreo detecta fallas reales?</li>
+          <li>¿Los backups se generan y almacenan correctamente?</li>
+          <li>¿Las alertas llegan al canal correcto?</li>
+        </ul>
+      </div>
+
+      <div class="deliverables">
+        <div class="block-title">📄 Entregables</div>
+        <ul>
+          <li>Workflow n8n exportado: <code>monitoring-flow.json</code></li>
+          <li>Workflow n8n exportado: <code>backup-flow.json</code></li>
+          <li>Documentación de configuración de credenciales</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CLASE 9 -->
+  <div class="clase">
+    <div class="clase-header" onclick="toggleClase(this)">
+      <div class="clase-num m3">9</div>
+      <h2>Agentes de IA para CI/CD</h2>
+      <span class="time-badge">1h 30min</span>
+      <span class="clase-toggle">▼</span>
+    </div>
+    <div class="clase-body">
+
+      <div class="block">
+        <div class="block-title">🎯 Objetivo</div>
+        <p>Conectar n8n con GitHub para automatizar el ciclo de vida completo del código, desde el push hasta el despliegue en producción.</p>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 1 · Integración n8n ↔ GitHub (20 min)</div>
+        <ul>
+          <li>Configurar webhook en GitHub → n8n</li>
+          <li>Eventos disponibles: push, PR, issue, release, workflow_run</li>
+          <li>Autenticación con GitHub Personal Access Token</li>
+          <li>Trigger on: push a <code>main</code> → iniciar pipeline de deploy</li>
+        </ul>
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — Diseño del pipeline con IA</div>
+          <pre>Diseñá un pipeline de CI/CD usando n8n y GitHub webhooks que:
+
+1. Se active con cada push a la rama main
+2. Ejecute los tests automáticamente
+3. Si los tests pasan: build de Docker image
+4. Deploy al servidor de staging
+5. Run smoke tests en staging
+6. Si todo OK: deploy a producción
+7. Notificar en Slack el resultado completo</pre>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 2 · GitHub Actions + n8n combinados (30 min)</div>
+        <ul>
+          <li>GitHub Actions para build y tests (CPU en los runners de GitHub)</li>
+          <li>n8n para orquestación de deploy y notificaciones (lógica de negocio propia)</li>
+          <li>Webhook de GitHub Actions hacia n8n para continuar el flujo post-CI</li>
+        </ul>
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — GitHub Actions workflow</div>
+          <pre>Generá un archivo .github/workflows/deploy.yml que:
+
+- Corra en push a main
+- Ejecute tests con matriz de versiones
+- Construya imagen Docker
+- La pushee a GitHub Container Registry
+- Llame al webhook de n8n para continuar el deploy</pre>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 3 · Rollback automático (30 min)</div>
+        <ul>
+          <li>Monitoreo post-deploy de métricas (error rate, latencia)</li>
+          <li>Si métrica supera umbral → trigger automático de rollback</li>
+          <li>Rollback vía: <code>docker service update --rollback</code> o tag anterior</li>
+          <li>Notificación del incidente con causa y versión restaurada</li>
+        </ul>
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — Flujo de rollback automático</div>
+          <pre>Diseñá un flujo n8n que monitoree el estado post-deploy y,
+si el error rate supera el 1% en 5 minutos:
+- Ejecute rollback automático al tag anterior
+- Abra un issue en GitHub con el reporte del incidente
+- Notifique al equipo con contexto completo</pre>
+        </div>
+      </div>
+
+      <div class="deliverables">
+        <div class="block-title">📄 Entregables</div>
+        <ul>
+          <li><code>.github/workflows/deploy.yml</code></li>
+          <li>Workflow n8n: <code>cicd-orchestrator.json</code></li>
+          <li>Workflow n8n: <code>auto-rollback.json</code></li>
+          <li><code>/docs/cicd-architecture.md</code></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RESULTADO -->
+  <div class="result-box">
+    <h3>🐳 Resultado del Módulo 3</h3>
+    <ul>
+      <li>Entorno reproducible y seguro con Docker multi-stage en cualquier servidor</li>
+      <li>Monitoreo proactivo de base de datos con alertas y auto-reparación</li>
+      <li>Backups automatizados con verificación de integridad</li>
+      <li>Pipeline CI/CD completo: push → tests → deploy → rollback automático</li>
+    </ul>
+  </div>
+
+  <div class="module-nav">
+    <a href="modulo2.html" class="btn btn-outline">← Módulo 2</a>
+    <a href="modulo4.html" class="btn btn-primary">Módulo 4: Despliegue Final →</a>
+  </div>
+
+</main>
+
+<footer>
+  <p>Full-Stack Ownership con IA y Automatización &mdash; <a href="index.html">Inicio</a></p>
+</footer>
+
+<script>
+function toggleClase(header) {
+  const clase = header.parentElement;
+  clase.classList.toggle('open');
+}
+</script>
+</body>
+</html>

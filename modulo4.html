@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 4: Despliegue, Monitoreo y Proyecto Final</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">⚡ FSO + IA</a>
+    <div class="nav-links">
+      <a href="index.html">Inicio</a>
+      <a href="modulo1.html">Módulo 1</a>
+      <a href="modulo2.html">Módulo 2</a>
+      <a href="modulo3.html">Módulo 3</a>
+      <a href="modulo4.html" class="active">Módulo 4</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <div class="module-header mh-m4">
+    <div class="module-num">Módulo 4 · Semanas 7–8</div>
+    <h1>🚀 Despliegue, Monitoreo y Proyecto Final</h1>
+    <p>Poné el sistema en producción y asegurá su estabilidad. Estrategias de rollback, mentoría individual sobre proyectos reales y demostración del ecosistema autónomo completo.</p>
+  </div>
+
+  <!-- CLASE 10 -->
+  <div class="clase open">
+    <div class="clase-header" onclick="toggleClase(this)">
+      <div class="clase-num m4">10</div>
+      <h2>Estrategias de Despliegue y Rollback</h2>
+      <span class="time-badge">1h 30min</span>
+      <span class="clase-toggle">▼</span>
+    </div>
+    <div class="clase-body">
+
+      <div class="block">
+        <div class="block-title">🎯 Objetivo</div>
+        <p>Configurar despliegues controlados con estrategias que minimicen el riesgo y permitan volver atrás en segundos si algo falla.</p>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 1 · Estrategias de despliegue (25 min)</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0.75rem;margin-top:0.5rem">
+          <div style="background:var(--bg-primary);border:1px solid var(--border);border-radius:8px;padding:1rem">
+            <div class="block-title" style="color:#10b981">Blue/Green</div>
+            <p style="font-size:0.82rem;color:var(--text-secondary)">Dos entornos idénticos. Se cambia el router de Blue a Green. Rollback instantáneo cambiando el router de vuelta.</p>
+          </div>
+          <div style="background:var(--bg-primary);border:1px solid var(--border);border-radius:8px;padding:1rem">
+            <div class="block-title" style="color:#f59e0b">Canary Release</div>
+            <p style="font-size:0.82rem;color:var(--text-secondary)">5% del tráfico va a la nueva versión. Si las métricas son buenas, se incrementa gradualmente hasta 100%.</p>
+          </div>
+          <div style="background:var(--bg-primary);border:1px solid var(--border);border-radius:8px;padding:1rem">
+            <div class="block-title" style="color:#6366f1">Feature Flags</div>
+            <p style="font-size:0.82rem;color:var(--text-secondary)">Deploy del código deshabilitado. Se activa por configuración para usuarios específicos sin hacer un nuevo deploy.</p>
+          </div>
+          <div style="background:var(--bg-primary);border:1px solid var(--border);border-radius:8px;padding:1rem">
+            <div class="block-title" style="color:#ef4444">Rolling Update</div>
+            <p style="font-size:0.82rem;color:var(--text-secondary)">Se reemplaza una instancia a la vez. Nunca hay downtime pero la transición tarda algunos minutos.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 2 · Implementación con Docker (25 min)</div>
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — Estrategia de deploy blue/green</div>
+          <pre>Diseñá una estrategia blue/green deployment para esta app dockerizada.
+
+Incluí:
+- Configuración del load balancer (Traefik / Nginx)
+- Comando para hacer el switch de tráfico
+- Validaciones automáticas antes de confirmar el switch
+- Procedimiento de rollback (debe tardar menos de 60 segundos)</pre>
+        </div>
+        <div class="prompt-box">
+          <div class="prompt-label">Comando — Rollback con Docker Swarm</div>
+          <pre># Rollback a la versión anterior del servicio
+docker service update --rollback myapp_web
+
+# Verificar estado
+docker service ps myapp_web --filter "desired-state=running"</pre>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 3 · Simulación de deploy fallido (30 min)</div>
+        <p style="margin-bottom:0.75rem">Ejercicio práctico de recuperación de incidente:</p>
+        <ul>
+          <li>Simular un deploy con bug crítico en producción</li>
+          <li>Detectar el fallo a través de las métricas de monitoreo</li>
+          <li>Ejecutar rollback al tag anterior</li>
+          <li>Documentar el incidente (post-mortem breve)</li>
+          <li>Identificar qué tests hubieran prevenido el bug</li>
+        </ul>
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — Diseño del sistema de métricas</div>
+          <pre>Diseñá un sistema de monitoreo para detectar rápidamente un deploy fallido.
+
+Métricas clave a vigilar:
+- Error rate (HTTP 5xx)
+- Latencia P95 y P99
+- Tasa de requests procesadas
+- Uso de CPU/memoria
+- Health checks de la base de datos
+
+Alertas: Slack inmediato si alguna métrica supera el umbral.</pre>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">✅ Criterios de go/no-go (5 min)</div>
+        <div class="priority">
+          <div class="p-item"><span class="dot dot-green"></span>Error rate &lt; 0.1% en los primeros 5 minutos</div>
+          <div class="p-item"><span class="dot dot-green"></span>Latencia P95 similar a la versión anterior (±20%)</div>
+          <div class="p-item"><span class="dot dot-green"></span>Health checks de todos los servicios en verde</div>
+          <div class="p-item"><span class="dot dot-red"></span>Si cualquier métrica supera umbral → rollback automático</div>
+        </div>
+      </div>
+
+      <div class="deliverables">
+        <div class="block-title">📄 Entregables</div>
+        <ul>
+          <li><code>/docs/deployment-strategy.md</code></li>
+          <li><code>/docs/runbook-rollback.md</code> (guía paso a paso)</li>
+          <li>Dashboard de monitoreo configurado</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CLASE 11 -->
+  <div class="clase">
+    <div class="clase-header" onclick="toggleClase(this)">
+      <div class="clase-num m4">11</div>
+      <h2>Taller de Casos Reales (Mentoría)</h2>
+      <span class="time-badge">1h 30min</span>
+      <span class="clase-toggle">▼</span>
+    </div>
+    <div class="clase-body">
+
+      <div class="block">
+        <div class="block-title">🎯 Objetivo</div>
+        <p>Trabajo intensivo sobre los proyectos específicos de cada estudiante, aplicando todo lo aprendido en los módulos anteriores a un contexto real.</p>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Formato de la clase (90 min)</div>
+        <p style="margin-bottom:0.75rem">Cada estudiante trabaja en su propio proyecto con soporte del docente y la IA:</p>
+        <ul>
+          <li><strong>Primeros 15 min:</strong> cada uno presenta el estado actual de su proyecto</li>
+          <li><strong>60 min:</strong> trabajo individual / en duplas con asistencia</li>
+          <li><strong>15 min:</strong> revisión conjunta de avances y bloqueos</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <div class="block-title">🛠️ Casos de uso típicos a trabajar</div>
+        <ul>
+          <li>Migración de base de datos PostgreSQL con datos reales</li>
+          <li>Dockerización de una app legacy que nunca tuvo contenedores</li>
+          <li>Agregar autenticación JWT a una API sin auth</li>
+          <li>Configurar CI/CD desde cero en un repo existente</li>
+          <li>Automatizar el deploy de un proyecto propio con n8n</li>
+          <li>Auditoría de seguridad de dependencias del proyecto actual</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <div class="block-title">💡 Prompts de apoyo para la mentoría</div>
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — Diagnóstico de proyecto real</div>
+          <pre>Analizá este proyecto que estoy migrando.
+
+Tengo:
+- Base de datos legacy en MySQL 5.7
+- API en Flask 1.x sin tipado
+- Sin tests, sin Docker, sin CI/CD
+
+Generá un plan de modernización incremental de 4 semanas
+que no corte el servicio en producción en ningún momento.</pre>
+        </div>
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — Resolución de bloqueante</div>
+          <pre>Estoy migrando de [tecnología A] a [tecnología B]
+y me encuentro con este error:
+
+[pegar el error completo]
+
+Contexto del proyecto: [descripción breve]
+¿Cuál es la causa raíz y cómo lo resuelvo?</pre>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">📋 Conexión con el proyecto final</div>
+        <p>Esta clase es la antesala del proyecto final. Los avances de hoy se integrarán en la presentación de la Clase 12. Se espera que cada estudiante tenga al menos un componente funcionando end-to-end.</p>
+      </div>
+
+      <div class="deliverables">
+        <div class="block-title">📄 Entregable</div>
+        <ul>
+          <li>Avance documentado del proyecto personal</li>
+          <li>Al menos un entregable funcional (Docker, pipeline, tests o migración)</li>
+          <li>Lista de pendientes para el proyecto final</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CLASE 12 -->
+  <div class="clase">
+    <div class="clase-header" onclick="toggleClase(this)">
+      <div class="clase-num m4">12</div>
+      <h2>Presentación de Ecosistemas Autónomos</h2>
+      <span class="time-badge">1h 30min</span>
+      <span class="clase-toggle">▼</span>
+    </div>
+    <div class="clase-body">
+
+      <div class="block">
+        <div class="block-title">🎯 Objetivo</div>
+        <p>Demostración del proyecto final: de código legado a una aplicación moderna, documentada, dockerizada y con mantenimiento automatizado. Cierre y reflexión del programa.</p>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Formato de presentación (60 min)</div>
+        <ul>
+          <li>Cada estudiante tiene <strong>10 minutos</strong> para presentar su proyecto</li>
+          <li>Demostración en vivo del sistema funcionando</li>
+          <li>5 minutos de preguntas y feedback del grupo</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <div class="block-title">📋 Criterios de evaluación del proyecto final</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0.75rem;margin-top:0.5rem">
+          <div style="background:var(--bg-primary);border:1px solid rgba(99,102,241,0.3);border-radius:8px;padding:0.75rem">
+            <div class="block-title" style="color:#a5b4fc">Arquitectura</div>
+            <p style="font-size:0.8rem;color:var(--text-secondary)">¿Se entiende el sistema sin leer código? ¿Está documentado?</p>
+          </div>
+          <div style="background:var(--bg-primary);border:1px solid rgba(16,185,129,0.3);border-radius:8px;padding:0.75rem">
+            <div class="block-title" style="color:#6ee7b7">Docker</div>
+            <p style="font-size:0.8rem;color:var(--text-secondary)">¿Levanta con un solo <code>docker compose up</code>? ¿Usa multi-stage?</p>
+          </div>
+          <div style="background:var(--bg-primary);border:1px solid rgba(6,182,212,0.3);border-radius:8px;padding:0.75rem">
+            <div class="block-title" style="color:#67e8f9">Automatización</div>
+            <p style="font-size:0.8rem;color:var(--text-secondary)">¿Hay al menos un flujo n8n funcionando (backup, monitoreo o deploy)?</p>
+          </div>
+          <div style="background:var(--bg-primary);border:1px solid rgba(239,68,68,0.3);border-radius:8px;padding:0.75rem">
+            <div class="block-title" style="color:#fca5a5">Seguridad</div>
+            <p style="font-size:0.8rem;color:var(--text-secondary)">¿Pasó una auditoría básica? ¿Sin secrets hardcodeados?</p>
+          </div>
+          <div style="background:var(--bg-primary);border:1px solid rgba(245,158,11,0.3);border-radius:8px;padding:0.75rem">
+            <div class="block-title" style="color:#fcd34d">Testing</div>
+            <p style="font-size:0.8rem;color:var(--text-secondary)">¿Existe al menos una suite de tests que corra en CI?</p>
+          </div>
+          <div style="background:var(--bg-primary);border:1px solid rgba(139,92,246,0.3);border-radius:8px;padding:0.75rem">
+            <div class="block-title" style="color:#c4b5fd">CI/CD</div>
+            <p style="font-size:0.8rem;color:var(--text-secondary)">¿Hay un pipeline que haga deploy automático al pushear a main?</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Cierre del programa (30 min)</div>
+        <ul>
+          <li><strong>Reflexión:</strong> ¿Qué cambió en cómo ves los sistemas técnicos?</li>
+          <li><strong>Próximos pasos:</strong> agentes autónomos, embeddings, pipelines de datos</li>
+          <li><strong>Recursos:</strong> comunidad, bibliografía y proyectos open-source recomendados</li>
+          <li><strong>Networking:</strong> conexiones y colaboraciones entre participantes</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <div class="block-title">🔮 ¿Qué sigue después del programa?</div>
+        <ul>
+          <li>Agentes autónomos que auditan y mejoran código sin intervención</li>
+          <li>Scraping + embeddings + Neo4j para grafos de conocimiento</li>
+          <li>Pipelines de ETL automatizados con IA</li>
+          <li>Dashboards de métricas conectados a los flujos de n8n</li>
+          <li>MLOps: despliegue y monitoreo de modelos en producción</li>
+        </ul>
+      </div>
+
+      <div class="deliverables">
+        <div class="block-title">📄 Entregable final</div>
+        <ul>
+          <li>Repositorio público con toda la infraestructura funcionando</li>
+          <li><code>README.md</code> profesional con instrucciones de setup</li>
+          <li>Video demo de 3 minutos del sistema corriendo</li>
+          <li>Documento de arquitectura completo en <code>/docs/</code></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RESULTADO FINAL -->
+  <div class="result-box" style="background:rgba(16,185,129,0.05);border-color:rgba(16,185,129,0.25)">
+    <h3 style="color:#6ee7b7">🏆 Resultado del Programa Completo</h3>
+    <ul>
+      <li>Soberanía técnica: podés entrar en cualquier repo y entenderlo en minutos</li>
+      <li>Migración confiable con red de seguridad de tests automáticos</li>
+      <li>Infraestructura como código: Docker en producción sin "funciona en mi máquina"</li>
+      <li>Mantenimiento zero-touch: n8n gestiona logs, backups y alertas solo</li>
+      <li>Pipeline CI/CD completo con despliegue y rollback automáticos</li>
+    </ul>
+  </div>
+
+  <div class="module-nav">
+    <a href="modulo3.html" class="btn btn-outline">← Módulo 3</a>
+    <a href="index.html" class="btn btn-primary">↩ Volver al inicio</a>
+  </div>
+
+</main>
+
+<footer>
+  <p>Full-Stack Ownership con IA y Automatización &mdash; <a href="index.html">Inicio</a></p>
+</footer>
+
+<script>
+function toggleClase(header) {
+  const clase = header.parentElement;
+  clase.classList.toggle('open');
+}
+</script>
+</body>
+</html>
