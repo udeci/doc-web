@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 2: Migración y Refactorización Segura</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">⚡ FSO + IA</a>
+    <div class="nav-links">
+      <a href="index.html">Inicio</a>
+      <a href="modulo1.html">Módulo 1</a>
+      <a href="modulo2.html" class="active">Módulo 2</a>
+      <a href="modulo3.html">Módulo 3</a>
+      <a href="modulo4.html">Módulo 4</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <div class="module-header mh-m2">
+    <div class="module-num">Módulo 2 · Semanas 3–4</div>
+    <h1>⚙️ Migración y Refactorización Segura</h1>
+    <p>Evolucioná el código a una versión moderna y robusta sin romper producción. La IA asiste en cada paso: desde el análisis de dependencias hasta la generación de tests de regresión.</p>
+  </div>
+
+  <!-- CLASE 4 -->
+  <div class="clase open">
+    <div class="clase-header" onclick="toggleClase(this)">
+      <div class="clase-num m2">4</div>
+      <h2>Modernización de Stack (The Migration Path)</h2>
+      <span class="time-badge">1h 30min</span>
+      <span class="clase-toggle">▼</span>
+    </div>
+    <div class="clase-body">
+
+      <div class="block">
+        <div class="block-title">🎯 Objetivo</div>
+        <p>Aprender a evolucionar un proyecto existente sin romper producción, usando IA para analizar dependencias, planificar migraciones y ejecutar refactorizaciones controladas.</p>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 1 · Auditoría técnica automática (20 min)</div>
+        <p style="margin-bottom:0.75rem">Cada estudiante carga su repositorio en el IDE con IA y ejecuta:</p>
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — Migration Assessment</div>
+          <pre>Analizá este proyecto y generá un informe de modernización con:
+
+1. Versión actual del stack
+2. Dependencias obsoletas
+3. Librerías con riesgo de seguridad
+4. Patrones legacy detectados
+5. Quick wins de refactor (bajo esfuerzo, alto impacto)
+6. Riesgos de migración
+7. Plan incremental en fases</pre>
+        </div>
+        <div class="deliverables" style="margin-top:0.75rem">
+          <div class="block-title">Documento resultado: <code>/docs/migration-assessment.md</code></div>
+          <ul>
+            <li>Versión actual → versión objetivo</li>
+            <li>Breaking changes identificados</li>
+            <li>Dependencias críticas mapeadas</li>
+            <li>Deuda técnica priorizada</li>
+            <li>Estrategia de rollback definida</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 2 · Refactorización asistida (30 min)</div>
+        <p style="margin-bottom:0.75rem">Ejemplos por stack tecnológico:</p>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0.75rem;margin-bottom:0.75rem">
+          <div style="background:var(--bg-primary);border:1px solid var(--border);border-radius:8px;padding:0.75rem">
+            <div class="block-title" style="color:#3b82f6">Python</div>
+            <ul style="padding-left:1rem;font-size:0.82rem;color:var(--text-secondary)">
+              <li><code>requirements.txt</code> → <code>pyproject.toml</code></li>
+              <li>Sin typing → type hints</li>
+              <li>Validaciones manuales → Pydantic</li>
+              <li>Errores genéricos → excepciones específicas</li>
+            </ul>
+          </div>
+          <div style="background:var(--bg-primary);border:1px solid var(--border);border-radius:8px;padding:0.75rem">
+            <div class="block-title" style="color:#f59e0b">JavaScript / Node</div>
+            <ul style="padding-left:1rem;font-size:0.82rem;color:var(--text-secondary)">
+              <li>CommonJS → ES Modules</li>
+              <li>JS → TypeScript</li>
+              <li>Callbacks → async/await</li>
+              <li>Validaciones → Zod</li>
+            </ul>
+          </div>
+          <div style="background:var(--bg-primary);border:1px solid var(--border);border-radius:8px;padding:0.75rem">
+            <div class="block-title" style="color:#ef4444">Java</div>
+            <ul style="padding-left:1rem;font-size:0.82rem;color:var(--text-secondary)">
+              <li>Java 8 → 21</li>
+              <li>Spring Boot upgrade</li>
+              <li>DTOs mejorados</li>
+              <li>Dependencias antiguas</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — Refactorización modular</div>
+          <pre>Refactorizá este módulo para hacerlo moderno y mantenible.
+
+Objetivos:
+- Tipado fuerte (type hints / TypeScript)
+- Validación robusta de inputs
+- Manejo explícito de errores
+- Separación de responsabilidades
+- Mantener compatibilidad funcional exacta</pre>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 3 · Plan de despliegue seguro (25 min)</div>
+        <ul style="margin-bottom:0.75rem">
+          <li><strong>Blue/Green deployment:</strong> dos entornos idénticos, switch instantáneo</li>
+          <li><strong>Canary release:</strong> rollout gradual al 5% → 25% → 100%</li>
+          <li><strong>Feature flags:</strong> activar funcionalidades sin nuevo deploy</li>
+          <li><strong>Rollback:</strong> vuelta atrás en &lt;60 segundos</li>
+        </ul>
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — Estrategia de migración a producción</div>
+          <pre>Diseñá una estrategia de migración a producción para este cambio minimizando downtime.
+
+Incluí:
+- Pasos ordenados con validaciones
+- Criterios de go/no-go
+- Procedimiento de rollback
+- Métricas a monitorear en cada etapa</pre>
+        </div>
+      </div>
+
+      <div class="deliverables">
+        <div class="block-title">📄 Entregables</div>
+        <ul>
+          <li><code>/docs/migration-assessment.md</code></li>
+          <li><code>/docs/migration-plan.md</code></li>
+          <li><code>/refactored-module/</code> con código modernizado</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CLASE 5 -->
+  <div class="clase">
+    <div class="clase-header" onclick="toggleClase(this)">
+      <div class="clase-num m2">5</div>
+      <h2>Testing Autónomo y Cobertura</h2>
+      <span class="time-badge">1h 30min</span>
+      <span class="clase-toggle">▼</span>
+    </div>
+    <div class="clase-body">
+
+      <div class="block">
+        <div class="block-title">🎯 Objetivo</div>
+        <p>Usar IA para generar y mantener tests automáticos inteligentes que protejan la lógica de negocio durante y después de la migración.</p>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 1 · Mapa de cobertura actual (20 min)</div>
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — Gap analysis de testing</div>
+          <pre>Analizá este proyecto e identificá:
+
+1. Módulos sin cobertura de tests
+2. Funciones críticas de negocio
+3. Escenarios de borde no considerados
+4. Riesgos si esas funciones fallan
+5. Prioridad de testing (qué testear primero)</pre>
+        </div>
+        <div class="deliverables" style="margin-top:0.75rem">
+          <div class="block-title">Documento: <code>/docs/testing-gap-analysis.md</code></div>
+          <ul>
+            <li>Porcentaje de cobertura estimado por módulo</li>
+            <li>Lista priorizada de tests faltantes</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 2 · Generación automática de tests (35 min)</div>
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — Unit tests</div>
+          <pre>Generá tests unitarios completos para este archivo.
+
+Incluir:
+- Casos felices (happy path)
+- Casos con inputs inválidos
+- Edge cases y límites
+- Mocks necesarios bien documentados
+
+Framework: pytest / jest / junit (según el proyecto)</pre>
+        </div>
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — Integration tests</div>
+          <pre>Generá tests de integración para validar este flujo completo:
+
+- Autenticación → endpoint → validación → DB
+- Incluir setup y teardown
+- Cubrir casos de error de red y timeout</pre>
+        </div>
+        <div style="margin-top:0.75rem">
+          <div class="block-title">Frameworks cubiertos</div>
+          <div class="tags">
+            <span class="tag m2" style="font-size:0.75rem">pytest</span>
+            <span class="tag m2" style="font-size:0.75rem">Jest</span>
+            <span class="tag m2" style="font-size:0.75rem">JUnit</span>
+            <span class="tag m2" style="font-size:0.75rem">xUnit</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 3 · Tests de regresión (20 min)</div>
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — Regresión post-migración</div>
+          <pre>Diseñá tests que aseguren que la nueva implementación mantiene exactamente la lógica anterior.
+
+Compará el comportamiento antes y después del refactor.</pre>
+        </div>
+        <div class="prompt-box">
+          <div class="prompt-label">Bonus — Datos sintéticos</div>
+          <pre>Generá 100 casos edge para este modelo de datos,
+cubriendo tipos inválidos, strings vacíos,
+valores límite y datos en idiomas con caracteres especiales.</pre>
+        </div>
+      </div>
+
+      <div class="deliverables">
+        <div class="block-title">📄 Entregables</div>
+        <ul>
+          <li><code>/tests/unit/</code></li>
+          <li><code>/tests/integration/</code></li>
+          <li><code>/tests/regression/</code></li>
+          <li><code>/docs/testing-strategy.md</code></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CLASE 6 -->
+  <div class="clase">
+    <div class="clase-header" onclick="toggleClase(this)">
+      <div class="clase-num m2">6</div>
+      <h2>Seguridad Proactiva y Análisis de Vulnerabilidades</h2>
+      <span class="time-badge">1h 30min</span>
+      <span class="clase-toggle">▼</span>
+    </div>
+    <div class="clase-body">
+
+      <div class="block">
+        <div class="block-title">🎯 Objetivo</div>
+        <p>Convertir a la IA en un auditor permanente de seguridad del proyecto, integrando escaneos automáticos en el ciclo de desarrollo.</p>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 1 · Escaneo automático de código (25 min)</div>
+        <div style="margin-bottom:0.75rem">
+          <div class="block-title">Herramientas de escaneo</div>
+          <div class="tags">
+            <span class="tag" style="background:rgba(239,68,68,0.1);color:#fca5a5;font-size:0.75rem">Semgrep</span>
+            <span class="tag" style="background:rgba(239,68,68,0.1);color:#fca5a5;font-size:0.75rem">Snyk</span>
+            <span class="tag" style="background:rgba(239,68,68,0.1);color:#fca5a5;font-size:0.75rem">OWASP Dependency-Check</span>
+            <span class="tag" style="background:rgba(239,68,68,0.1);color:#fca5a5;font-size:0.75rem">GitHub Advanced Security</span>
+          </div>
+        </div>
+        <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:0.75rem">Vulnerabilidades a buscar: SQL injection, secrets hardcodeados, XSS, auth débil, SSRF, permisos excesivos.</p>
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — Auditoría completa de seguridad</div>
+          <pre>Auditá este repositorio buscando vulnerabilidades:
+
+1. Código inseguro (injections, XSS, CSRF)
+2. Librerías con CVEs conocidos
+3. Secretos o credenciales expuestos
+4. Malas prácticas de autenticación
+5. Nivel de severidad de cada hallazgo
+6. Propuesta de remediación para cada uno</pre>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 2 · Corrección asistida (30 min)</div>
+        <p style="margin-bottom:0.75rem">La IA propone fixes concretos y los explica:</p>
+        <div class="prompt-box">
+          <div class="prompt-label">Antes — SQL injection vulnerable</div>
+          <pre>query = f"SELECT * FROM users WHERE id={user_id}"</pre>
+        </div>
+        <div class="prompt-box">
+          <div class="prompt-label">Después — Parametrizado y seguro</div>
+          <pre>cursor.execute(
+    "SELECT * FROM users WHERE id = %s",
+    (user_id,)
+)</pre>
+        </div>
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — Corrección con explicación</div>
+          <pre>Corregí esta vulnerabilidad manteniendo la compatibilidad funcional.
+Explicá:
+- Por qué era riesgosa
+- Qué tipo de ataque habilitaba
+- Cómo el fix lo previene</pre>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">⏱️ Bloque 3 · Automatización en CI/CD (20 min)</div>
+        <div class="prompt-box">
+          <div class="prompt-label">Prompt — Pipeline de seguridad</div>
+          <pre>Generá un pipeline de GitHub Actions que ejecute:
+
+- Tests unitarios e integración
+- Scan de dependencias (Snyk / OWASP)
+- Análisis estático de código (Semgrep)
+- Bloqueo automático si hay vulnerabilidades críticas
+- Reporte de resultados como PR comment</pre>
+        </div>
+      </div>
+
+      <div class="deliverables">
+        <div class="block-title">📄 Entregables</div>
+        <ul>
+          <li><code>/docs/security-audit.md</code></li>
+          <li><code>/docs/remediation-plan.md</code></li>
+          <li><code>/.github/workflows/security.yml</code></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RESULTADO -->
+  <div class="result-box">
+    <h3>⚙️ Resultado del Módulo 2</h3>
+    <ul>
+      <li>Proyecto modernizado con código limpio, tipado y dependencias actualizadas</li>
+      <li>Suite de tests generada por IA con cobertura de regresión controlada</li>
+      <li>Pipeline de CI con escaneo de seguridad continuo y automático</li>
+      <li>Capacidad de migrar cualquier sistema legacy con red de seguridad completa</li>
+    </ul>
+  </div>
+
+  <div class="module-nav">
+    <a href="modulo1.html" class="btn btn-outline">← Módulo 1</a>
+    <a href="modulo3.html" class="btn btn-primary">Módulo 3: Docker + n8n →</a>
+  </div>
+
+</main>
+
+<footer>
+  <p>Full-Stack Ownership con IA y Automatización &mdash; <a href="index.html">Inicio</a></p>
+</footer>
+
+<script>
+function toggleClase(header) {
+  const clase = header.parentElement;
+  clase.classList.toggle('open');
+}
+</script>
+</body>
+</html>
